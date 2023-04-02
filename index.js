@@ -22,7 +22,9 @@ fs.readFile("./num1.txt", "utf-8", (err, data) => {
     })
     // some activity based on the data of read file
 })
-
+fs.readFile("", "", () => {
+    
+})
 
 // let data = fs.readFileSync("./test.txt", "utf-8");
 // console.log(data);
