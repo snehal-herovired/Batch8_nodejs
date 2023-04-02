@@ -1,10 +1,3 @@
-// filesystems :fs module
-// how to take input in nodejs
-// client -server architecture
-// module creation and importing module;
-//function as an argument to another fun : callback;
-// function returning a funtion :closure;
-
 const { log } = require("console");
 const fs = require("fs");
 const path =require("path")
@@ -13,13 +6,13 @@ const path =require("path")
 // // fs.readFile()
 
 // // wrting in file
-// fs.writeFile("test.txt", "Herovired1", (err) => {
+// fs.writeFile("node.txt", "Herovired1", (err) => {
 //     console.log(err);
 // })
 // fs.writeFileSync("sample.txt", "herovired");
 
 // //appending the file
-// fs.appendFile("test.txt", " herovired", (err) => {
+// fs.appendFile("node.txt", " herovired", (err) => {
 //     console.log(err);
 // })
 // __dirname
@@ -56,6 +49,20 @@ const path =require("path")
 //whether it is directorty ;
 // if it is direcotry then go inside the directory and check if files are there or not;
 //
+// let folderPath = __dirname;
+// fs.readdir(folderPath,"utf-8",(err,data)=>{
+//     console.log(data);
+//     //output of readin folder
+//     let arrayofdirectories = data;
+//     for(let index = 0;index<arrayofdirectories.length;index++){
+//         let isdirectory = fs.lstatSync(arrayofdirectories[index]).isDirectory();
+//         if(isdirectory){
+//             let data = fs.readFileSync(arrayofdirectories[index],"utf-8");
+//             console.log(data,"=========directory reading reading========");
+//         }
+//     }
+    
+// })
 
 // let filepath = __filename
 // console.log(filepath);

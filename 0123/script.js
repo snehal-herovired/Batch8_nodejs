@@ -26,7 +26,7 @@ fs.readFile("", "", () => {
     
 })
 
-// let data = fs.readFileSync("./test.txt", "utf-8");
+// let data = fs.readFileSync("./NodeJs.txt", "utf-8");
 // console.log(data);
 
 console.log("end");
