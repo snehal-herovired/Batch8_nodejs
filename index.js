@@ -1,40 +1,47 @@
-// module fs
-// filesystem
+// module fs(filesystem)
 
+// const { log } = require("console")
 
-const fs = require("fs");
+const fs = require("fs") // blocking code
+console.log("start") // blocking
 
+fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+    console.log("we are inside callback function\n", data)
+}) // non blocking as async in behavior(callback fun)
 
-//parallel execution
-// 123456789
-//serial execution
-console.log("start");
-fs.readFile("./num1.txt", "utf-8", (err, data) => {
-    console.log("we are inside callback function", data);
-    fs.readFile("./num2.txt", "utf-8", (err, data) => {
-        console.log("we are inside callback function", data);
-        fs.readFile("./num3.txt", "utf-8", (err, data) => {
-            console.log("we are inside callback function", data);
-            
-            // some activity based on the data of read file
-        })
-        // some activity based on the data of read file
-    })
-    // some activity based on the data of read file
+// as blocking code
+let data = fs.readFileSync("./nodeJs.txt","utf-8")
+console.log(data)
+
+// panel execution : random execution of async blocks of codes
+
+fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+    console.log("abc\n", data)
 })
-fs.readFile("", "", () => {
+
+fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+    console.log("def\n", data)
+})
+
+fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+    console.log("ghi\n", data)
+}) 
+// ouput will not be abc-def-ghi
+// all three blocks will be executed in random order
+
+
+// serial execution : resolve random execution of panel execution
+
+fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+    console.log("abc\n", data)
     
+    fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+        console.log("def\n", data)
+
+        fs.readFile("./nodeJs.txt", "utf-8", (err,data) => {
+            console.log("ghi\n", data)
+        })
+    })
 })
 
-// let data = fs.readFileSync("./test.txt", "utf-8");
-// console.log(data);
-
-console.log("end");
-
-//start
-// output of filereading
-// end
-
-// start
-// end
-//
+console.log("end") // blocking
