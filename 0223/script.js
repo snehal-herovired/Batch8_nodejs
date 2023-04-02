@@ -72,3 +72,9 @@ const path =require("path")
 // readfile,appendfile,writefile,__dirname,__filename
 //lstatsync : isdir or isfile
 // path module : extname, path.dirname
+
+
+const add = require("./Export Module/index");
+;
+console.log(add(2,3));
+
