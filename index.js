@@ -2,7 +2,7 @@
 // filesystem
 
 
-const fs = require("fs");
+// const fs = require("fs");
 
 
 //parallel execution
@@ -27,7 +27,7 @@ fs.readFile("./num1.txt", "utf-8", (err, data) => {
 // let data = fs.readFileSync("./test.txt", "utf-8");
 // console.log(data);
 
-console.log("end");
+// console.log("end");
 
 //start
 // output of filereading
