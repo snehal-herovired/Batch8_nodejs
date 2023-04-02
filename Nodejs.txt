@@ -1,24 +1,3 @@
-//nodejs//
-// Javascript :
-// Javascript is a single threaded , synchronous language;
-// Javascript is also event based language;
-
-//Javascript has asynchornous behaviour  using APIs.
-
-function taketime(){
-    // takes 15 min
-}
-taketime();
-var a =10;
-console.log(a);
-var b =12;
-
-
-// Nodejs : 
-//it has singlwe threaded event loop architecture;
-// it is based js event based model;
-
-// nodejs JRE copmponents :
-//js engine ,event loop,asynchornous behaviour,event queue,thread pool,I/o , in built modules like fs , npm
-
-
+123
+456
+789
