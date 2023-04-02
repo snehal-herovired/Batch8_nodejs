@@ -51,3 +51,6 @@ if (isDir) {
 
 // let ans = fs.lstatSync(folderpath).isFile();
 // console.log(ans);
+
+const add = require("./test1/sample1");
+console.log(add(2,3));
