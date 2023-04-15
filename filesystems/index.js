@@ -5,9 +5,9 @@
 //function as an argument to another fun : callback;
 // function returning a funtion :closure;
 
-const { log } = require("console");
-const fs = require("fs");
-const path =require("path")
+// const { log } = require("console");
+// const fs = require("fs");
+// const path =require("path")
 
 // // reading the file
 // // fs.readFile()
@@ -65,3 +65,19 @@ const path =require("path")
 // readfile,appendfile,writefile,__dirname,__filename
 //lstatsync : isdir or isfile
 // path module : extname, path.dirname
+
+// let name = process.argv[2];
+// let name2 = process.argv[3];
+// console.log(name);
+// console.log(name2);
+
+// client-server acrhitecture;
+// http ,
+// what is req and respoonse
+// Port number
+//client and server
+
+
+// import the add fun
+const add = require("./test1/sample1");
+console.log(add(2,3));
