@@ -75,6 +75,5 @@ const path =require("path")
 
 
 const add = require("./Export Module/index");
-;
 console.log(add(2,3));
 
