@@ -24,29 +24,80 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     username: {
         type: String,
-        required:true
+        required: true
     },
     email: {
         type: String,
-        required:true
+        required: true
     },
     password: {
         type: String,
-        required:true
+        required: true
     }
-  });
+});
 
 const UserModel = mongoose.model('UserDatabase', UserSchema);
-  // this model will be used to intercat with our db using our apis.
+// this model will be used to intercat with our db using our apis.
 
-app.post("/register", (req, res) => {
-    const { username, email, password } = req.body
-    console.log(username,email,password);
-    res.json({
-        message:"data recieved"
+
+    app.post("/register", async(req, res) => {
+        const { username, email, password } = req.body;
+        console.log(username, email, password);
+        
+        try {
+            const existingUser = await UserModel.findOne({ email });
+            if (existingUser) {
+                return res.json({
+                    message: "email already exists"
+                });
+            }
+    
+            const newUser = new UserModel({
+                username,
+                email,
+                password
+            });
+    
+            const savedUser = await newUser.save();
+            if (savedUser) {
+                return res.json({
+                    message: "User created successfully"
+                });
+            }
+        } catch (error) {
+            return res.json({
+                message: "Error creating user"
+            });
+        }
+    });
+    
+    
+    // method to store the data in mongodb;
+        
+    // error: multiple responses :req header can not be set after it has been sent to the client;
+    
+
+
+app.post("/user", async(req, res) => {
+    const { email } = req.body;
+    // to find data based on email address provided';
+
+   try {
+       const data = await UserModel.find({ email });
+       if (data) {
+           return res.json({
+               message:"data exists"
+           })
+       }
+       return res.json({
+           message:"data does not exists"
+       })
+   } catch (error) {
+       return res.json({
+        message:"error in finding the data"
     })
+   }
 })
-
 
 app.listen(5000, () => {
     console.log("server running");
