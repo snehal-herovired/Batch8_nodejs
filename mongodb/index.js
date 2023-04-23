@@ -1,15 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 app.use(express.json())
 app.get('/test', (req, res) => {
     res.json({
         message: "get request working!!"
     })
 })
-
 
 // this line suiggest only connecting to db;
 mongoose.connect(process.env.MONGO_URL)
@@ -87,6 +87,10 @@ mongoose.connect(process.env.MONGO_URL)
 //     })
 //    }
 // })
+
+// a centralized path to userrouter or to your created routes;
+const UserRouter = require("./routes/UserRouter");
+app.use("/auth", UserRouter);
 
 app.listen(port, () => {
     console.log("server running");

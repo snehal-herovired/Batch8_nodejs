@@ -1,5 +1,7 @@
 const UserModel = require("../models/db.schema");
 
+// method to store the data in mongodb;
+// error: multiple responses :req header can not be set after it has been sent to the client;
 const registerController = async(req, res) => {
     const { username, email, password } = req.body
     console.log(username, email, password);
@@ -9,10 +11,10 @@ const registerController = async(req, res) => {
         email: email
     }
     try {
-        let data = await UserModel({email}).save();
+        let data = await UserModel(userobj).save();
     if (data) {
         return res.json({
-            message:"data inserted succesfuylly"
+            message:"data inserted succesfully"
         })
     }
     return res.json({
@@ -23,8 +25,6 @@ const registerController = async(req, res) => {
             message:"some error"
         })
     }
-    // method to store the data in mongodb;
-    // error: multiple responses :req header can not be set after it has been sent to the client;
 }
 
 const userController = async(req, res) => {
