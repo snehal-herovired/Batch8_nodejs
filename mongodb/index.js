@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
+const port = process.env.PORT;
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 app.use(express.json())
 app.get('/test', (req, res) => {
     res.json({
@@ -11,7 +12,7 @@ app.get('/test', (req, res) => {
 
 
 // this line suiggest only connecting to db;
-mongoose.connect('mongodb://127.0.0.1:27017/batch8Db')
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log('Connected to batch8db!'));
 
 
@@ -19,24 +20,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/batch8Db')
 //in order to view this db , we have specify what kind of database it is , and what is the type of data it is going to store
 //Schema of the db model;
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
-});
+// const UserSchema = new Schema({
+//     username: {
+//         type: String,
+//         required: true
+//     },
+//     email: {
+//         type: String,
+//         required: true
+//     },
+//     password: {
+//         type: String,
+//         required: true
+//     }
+// });
 
-const UserModel = mongoose.model('UserDatabase', UserSchema);
+// const UserModel = mongoose.model('UserDatabase', UserSchema);
 // this model will be used to intercat with our db using our apis.
 
 app.post("/register", async(req, res) => {
@@ -91,6 +92,6 @@ app.post("/user", async(req, res) => {
    }
 })
 
-app.listen(5000, () => {
+app.listen(port, () => {
     console.log("server running");
 })
