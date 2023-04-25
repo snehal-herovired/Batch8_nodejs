@@ -1,58 +1,21 @@
-require('dotenv').config
 const express = require("express");
 const app = express();
-
-const mongoose = require("mongoose")
-app.use(express.json())
-
-const port = process.env.PORT
-
-app.get("/test", (req, res) => {
-    res.json({
-        message: "get request working!"
-    })
-})
-// connecting to db only
-mongoose.connect(process.env.MONGO_URL)
-    .then(() => console.log('Connected to batch8db'));
-
-//to view db pls  specify kind of database it is and type of db it is
-
-// const Schema = mongoose.Schema;
-
-// const UserSchema = new Schema({
-//     username: {
-//         type: String,
-//         required: true
-//     },
-//     email: {
-//         type: String,
-//         required: true
-//     },
-//     password: {
-//         type: String,
-//         required: true
-//     }
-// });
-// used to interact with database using our apis
-// const UserModel = mongoose.model('UserDatabase', UserSchema);
-
-app.post("/register", (req,res)=>{
-    const {username, email, password } = req.body
-    console.log(username,email,password);
-    res.json({
-        message: "data recieved"
-    })
-})
-
-
+app.use(express.json());
+require("dotenv").config();
 const UserRouter = require("./routes/Userrouter");
-app.use("/auth", UserRouter)
 
-const UserController = require("./Controller/UserController");
-app.use("/auth", UserController)
+app.use("/auth", UserRouter);
 
+const mongoose = require("mongoose");
 
+const port = process.env.PORT;
+
+//this line only connects to db, to view this db we need to specify the type of data it is going to store and kind of database through schema
+mongoose
+  .connect(process.env.MONGOURl)
+  .then(() => console.log("Connected! to my first mongo db"));
+
+// port = process.env.PORT;
 app.listen(port, () => {
-    console.log("Server started running")
-})
+  console.log("server running");
+});

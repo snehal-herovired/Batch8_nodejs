@@ -1,20 +1,14 @@
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
+//schema of db model
+const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
+  userName: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
 });
 
-const UserModel = mongoose.model('UserDatabase', UserSchema);
+//model, this is used to interact with db with apis
+const UserModel = mongoose.model("UserDB", UserSchema);
 
 module.exports = UserModel;

@@ -1,52 +1,42 @@
-const Usermodel = require("../models/Db.schema")
+const UserModel = require("../models/DB.schema");
 const express = require("express");
 
-
-const registerController = async(req, res) => {
-  const { username, email, password } = req.body;
-  console.log(username, email, password);
+const registerController = (req, res) => {
+  const { userName, email, password } = req.body;
+  console.log(userName, email, password);
   const userObj = {
-    username: username,
+    userName: userName,
     password: password,
     email: email,
   };
-// Checks if email already present if no then it saves all the data if yes
-   Usermodel.find({email}).then((data)=>{
-    if(data.length === 0){
-        //method stores data in Mongo DB
-        UserModel(userObj)
+  //checks if email already present, if no then it saves all the data if yes it wont save and send response only
+  UserModel.find({ email }).then((data) => {
+    if (data.length === 0) {
+      //method to store data in Mongo DB
+      UserModel(userObj)
         .save()
-        .then((data)=>
-          res.send({message: "data inserted sucessfully"})
+        .then((data) =>
+          res.send({ message: "following data insereted successfully", data })
         )
-        .catch((err)=>
-         res.send({message: "data not inserted due to", err})
+        .catch((err) =>
+          res.send({ message: "data is not insereted due to", err })
         );
-    }else {
-        res.json({message: `${email} user already exists`});
+    } else {
+      res.json({ message: `${email} user already exist` });
     }
-   });
-
+  });
 };
 
-const userController = (req, res) => {
-    const {email} = req.body;
-    UserModel.find({email})
+const postFindController = (req, res) => {
+  const { email } = req.body;
+  UserModel.find({ email })
     .then((data) => {
-        res.send(data);
-        console.log(data);
+      res.send(data);
+      console.log(data);
     })
     .catch((err) => {
-        console.log(err);
+      console.log(err);
     });
 };
 
-
-
-
-
-
-module.exports = {
-    registerController,
-    userController
-}
+module.exports = { registerController, postFindController };
