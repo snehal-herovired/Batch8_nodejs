@@ -4,10 +4,10 @@ const register = async (req, res) => {
     // check if email you are getting from postman is there in db or not;
     // if there,than just send response saying user exits;
     // if not there , than store all the credentials in the databse
-    const { username, email, password } = req.body
-    console.log(username, email, password);
+    const { name, email, password } = req.body
+    console.log(name, email, password);
     let userobj = {
-        name: username,
+        name: name,
         password: password,
         email: email
     }
