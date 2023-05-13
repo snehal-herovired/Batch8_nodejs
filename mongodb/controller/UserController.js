@@ -12,15 +12,21 @@ const register = async (req, res) => {
         email: email
     }
     try {
-        let data = await UserModel(userobj).save();
-    if (data) {
-        return res.json({
-            message:"data inserted succesfuylly"
-        })
-    }
-    return res.json({
-        message:"data not inserted"
-    })
+        const email_check = await UserModel.findOne({ email });
+        console.log(email_check,"email exists");
+        if (!email_check) {
+            let data = await UserModel(userobj).save();
+            if (data) {
+                return res.json({
+                    message:"data inserted succesfuylly"
+                })
+            }
+            return res.json({
+                message:"data not inserted"
+            })
+        }
+        return res.json({message:"user already exists with this email"})
+    //    
     } catch (error) {
         return res.json({
             message:"some error"

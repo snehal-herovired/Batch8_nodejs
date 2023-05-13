@@ -1,12 +1,13 @@
 const express = require("express");
 const UserRouter = express.Router();
 
-const { register } = require("../controller/UserController")
-const {rights,userbyrole} =require("../controller/RightController")
+const { register ,finduser} = require("../controller/UserController")
+// const {rights,userbyrole} =require("../controller/RightController")
 UserRouter.post("/register", register);
+UserRouter.post("/login", finduser);
 
-UserRouter.post("/right", rights)
-UserRouter.post("/getuserbyrole",userbyrole)
+// UserRouter.post("/right", rights)
+// UserRouter.post("/getuserbyrole",userbyrole)
 
 
 

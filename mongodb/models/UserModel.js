@@ -21,4 +21,8 @@ const UserSchema = new Schema({
 
 const UserModel = mongoose.model('User', UserSchema);
 
-module.exports=UserModel
+module.exports = UserModel
+
+
+//mcr : control ,model,route,
+//index.js <routes<controller <model

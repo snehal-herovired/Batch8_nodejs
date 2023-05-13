@@ -100,3 +100,17 @@ app.use('/auth',UserRouter)
 app.listen(5000, () => {
     console.log("server running");
 })
+
+
+// user autherntication
+// user schema :username,email and passsword
+// /register and /login
+// register : take the new data and store it in mongodb :
+            //  :check if email is already there, send response as user already there
+            
+// login : if email is matching or not , password is matching .
+
+// product : storing products
+
+// /getproduct :giving us list of product stored in db;  protect route or private  route.
+//    this routes are authorized.
